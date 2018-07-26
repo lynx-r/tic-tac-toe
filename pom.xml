@@ -49,8 +49,11 @@
     </properties>
 
     <modules>
-        <module>common</module>
-        <module>data-access</module>
+        <module>modules/common</module>
+        <module>modules/data-access</module>
+        <module>modules/services/service</module>
+        <module>modules/services/service-impl</module>
+        <module>modules/web</module>
     </modules>
 
     <dependencyManagement>

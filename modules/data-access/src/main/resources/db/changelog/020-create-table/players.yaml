@@ -1,0 +1,18 @@
+databaseChangeLog:
+
+  - changeSet:
+      id: create-players-table
+      author: vkurov
+      context: prod, dev, it
+      changes:
+      - createTable:
+          columns:
+          - column:
+              name: id
+              remarks: Уникальный идентификатор записи
+              type: bigint
+          - column:
+              name: login
+              remarks: Имя игрока
+              type: varchar(36)
+          tableName: players

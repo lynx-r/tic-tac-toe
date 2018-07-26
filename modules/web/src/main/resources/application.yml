@@ -1,0 +1,41 @@
+spring:
+  profiles:
+    active: dev
+
+  liquibase:
+    contexts: prod
+    drop-first: true
+
+  datasource:
+    hikari:
+      maximum-pool-size: 6
+      minimum-idle: 3
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/tic-tac-toe
+    username: root
+    password: root
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: validate
+      use-new-id-generator-mappings: true
+    properties:
+        jadira.usertype.autoRegisterUserTypes: true
+        hibernate.temp.use_jdbc_metadata_defaults: false
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+
+---
+spring:
+  profiles: it
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+
+  liquibase:
+    contexts: it
+
+---
+spring:
+  profiles: prod
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver

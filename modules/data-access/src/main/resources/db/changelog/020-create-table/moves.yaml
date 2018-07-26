@@ -1,0 +1,34 @@
+databaseChangeLog:
+
+  - changeSet:
+      id: create-moves-table
+      author: vkurov
+      context: prod, dev, it
+      changes:
+      - createTable:
+          columns:
+          - column:
+              name: id
+              remarks: Уникальный идентификатор записи
+              type: bigint
+          - column:
+              name: game_id
+              remarks: Отношение с сущностью "Игра"
+              type: bigint
+          - column:
+              name: move_number
+              remarks: Порядковый номер хода
+              type: tinyint
+          - column:
+              name: horizontal_position
+              remarks: Координата строки
+              type: tinyint
+          - column:
+              name: vertical_position
+              remarks: Координата столбца
+              type: tinyint
+          - column:
+              name: symbol
+              remarks: Символ хода
+              type: tinyint
+          tableName: moves
