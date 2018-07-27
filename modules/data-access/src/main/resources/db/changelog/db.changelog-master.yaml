@@ -1,9 +1,15 @@
 databaseChangeLog:
 
   # Create tables
+  - include: { relativeToChangelogFile: true, file: 020-create-table/games.yaml }
+  - include: { relativeToChangelogFile: true, file: 020-create-table/moves.yaml }
   - include: { relativeToChangelogFile: true, file: 020-create-table/players.yaml }
 
   # Add indexes and constraints
+  - include: { relativeToChangelogFile: true, file: 040-index-and-constraint/games.yaml }
+  - include: { relativeToChangelogFile: true, file: 040-index-and-constraint/moves.yaml }
   - include: { relativeToChangelogFile: true, file: 040-index-and-constraint/players.yaml }
 
   # Add foreign keys
+  - include: { relativeToChangelogFile: true, file: 050-foreign-key/games.yaml }
+  - include: { relativeToChangelogFile: true, file: 050-foreign-key/moves.yaml }

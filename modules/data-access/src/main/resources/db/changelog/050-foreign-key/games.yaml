@@ -1,0 +1,28 @@
+databaseChangeLog:
+
+  - changeSet:
+      id: create-games-foreign-keys
+      author: vkurov
+      context: prod, dev, it
+      changes:
+      - addForeignKeyConstraint:
+          baseColumnNames: cross_player_id
+          baseTableName: games
+          constraintName: fk_game_cross_player_id
+          deferrable: false
+          initiallyDeferred: false
+          onDelete: NO ACTION
+          onUpdate: NO ACTION
+          referencedColumnNames: id
+          referencedTableName: players
+
+      - addForeignKeyConstraint:
+          baseColumnNames: naught_player_id
+          baseTableName: games
+          constraintName: fk_game_naught_player_id
+          deferrable: false
+          initiallyDeferred: false
+          onDelete: NO ACTION
+          onUpdate: NO ACTION
+          referencedColumnNames: id
+          referencedTableName: players

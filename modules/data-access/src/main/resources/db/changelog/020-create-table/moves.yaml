@@ -18,17 +18,17 @@ databaseChangeLog:
           - column:
               name: move_number
               remarks: Порядковый номер хода
-              type: tinyint
+              type: int
           - column:
               name: horizontal_position
               remarks: Координата строки
-              type: tinyint
+              type: int
           - column:
               name: vertical_position
               remarks: Координата столбца
-              type: tinyint
+              type: int
           - column:
               name: symbol
               remarks: Символ хода
-              type: tinyint
+              type: int
           tableName: moves

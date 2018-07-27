@@ -1,0 +1,48 @@
+databaseChangeLog:
+
+  - changeSet:
+      id: create-moves-constraints
+      author: vkurov
+      context: prod, dev, it
+      changes:
+      - addNotNullConstraint:
+          columnDataType: bigint
+          columnName: id
+          tableName: moves
+
+      - addPrimaryKey:
+          columnNames: id
+          constraintName: pk_moves
+          tableName: moves
+
+      - addNotNullConstraint:
+          columnDataType: bigint
+          columnName: game_id
+          tableName: moves
+
+      - addNotNullConstraint:
+          columnDataType: int
+          columnName: move_number
+          tableName: moves
+
+      - addNotNullConstraint:
+          columnDataType: int
+          columnName: horizontal_position
+          tableName: moves
+
+      - addNotNullConstraint:
+          columnDataType: int
+          columnName: vertical_position
+          tableName: moves
+
+      - addNotNullConstraint:
+          columnDataType: int
+          columnName: symbol
+          tableName: moves
+
+      - addAutoIncrement:
+          columnDataType: bigint
+          columnName: id
+          incrementBy: 1
+          startWith: 1000
+          tableName: moves

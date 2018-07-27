@@ -1,0 +1,30 @@
+databaseChangeLog:
+
+  - changeSet:
+      id: create-games-table
+      author: vkurov
+      context: prod, dev, it
+      changes:
+      - createTable:
+          columns:
+          - column:
+              name: id
+              remarks: Уникальный идентификатор записи
+              type: bigint
+          - column:
+              name: cross_player_id
+              remarks: Идентификатор игрока крестиками
+              type: bigint
+          - column:
+              name: naught_player_id
+              remarks: Идентификатор игрока ноликами
+              type: bigint
+          - column:
+              name: status
+              remarks: Статус игры
+              type: int
+          - column:
+              name: result
+              remarks: Результат игроки
+              type: int
+          tableName: games

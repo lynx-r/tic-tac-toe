@@ -1,0 +1,38 @@
+databaseChangeLog:
+
+  - changeSet:
+      id: create-games-constraints
+      author: vkurov
+      context: prod, dev, it
+      changes:
+      - addNotNullConstraint:
+          columnDataType: bigint
+          columnName: id
+          tableName: games
+
+      - addPrimaryKey:
+          columnNames: id
+          constraintName: pk_games
+          tableName: games
+
+      - addNotNullConstraint:
+          columnDataType: bigint
+          columnName: cross_player_id
+          tableName: games
+
+      - addNotNullConstraint:
+          columnDataType: bigint
+          columnName: naught_player_id
+          tableName: games
+
+      - addNotNullConstraint:
+          columnDataType: int
+          columnName: status
+          tableName: games
+
+      - addAutoIncrement:
+          columnDataType: bigint
+          columnName: id
+          incrementBy: 1
+          startWith: 1000
+          tableName: games
