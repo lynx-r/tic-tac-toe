@@ -1,9 +1,10 @@
-package tic_tac_toe.domain;
+package tic_tac_toe.domain.game.start;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
+import tic_tac_toe.domain.player.PlayerDto;
 
 @Getter
 @Setter

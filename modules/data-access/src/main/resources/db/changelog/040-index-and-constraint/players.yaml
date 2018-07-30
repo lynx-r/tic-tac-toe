@@ -20,6 +20,11 @@ databaseChangeLog:
           columnName: login
           tableName: players
 
+      - addUniqueConstraint:
+          columnNames: login
+          constraintName: uk_login
+          tableName: players
+
       - addAutoIncrement:
           columnDataType: bigint
           columnName: id

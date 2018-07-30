@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import tic_tac_toe.GameStartService;
 import tic_tac_toe.config.Urls.Game.GameStart;
-import tic_tac_toe.domain.GameStartRequest;
-import tic_tac_toe.domain.GameStartResponse;
+import tic_tac_toe.domain.game.start.GameStartRequest;
+import tic_tac_toe.domain.game.start.GameStartResponse;
 
 @Slf4j
 @RequiredArgsConstructor

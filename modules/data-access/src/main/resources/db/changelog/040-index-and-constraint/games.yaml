@@ -21,11 +21,6 @@ databaseChangeLog:
           tableName: games
 
       - addNotNullConstraint:
-          columnDataType: bigint
-          columnName: naught_player_id
-          tableName: games
-
-      - addNotNullConstraint:
           columnDataType: int
           columnName: status
           tableName: games

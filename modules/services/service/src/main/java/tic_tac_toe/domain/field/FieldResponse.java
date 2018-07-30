@@ -1,4 +1,4 @@
-package tic_tac_toe.domain;
+package tic_tac_toe.domain.field;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;

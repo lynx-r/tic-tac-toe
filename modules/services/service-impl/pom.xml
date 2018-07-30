@@ -14,5 +14,25 @@
         <relativePath>../../..</relativePath>
     </parent>
 
+    <dependencies>
+        <dependency>
+            <groupId>tic-tac-toe</groupId>
+            <artifactId>service</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>tic-tac-toe</groupId>
+            <artifactId>data-access</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct-jdk8</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct-processor</artifactId>
+        </dependency>
+    </dependencies>
 
 </project>
