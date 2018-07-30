@@ -10,14 +10,15 @@ import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 import tic_tac_toe.rest.data.tools.DataProvider;
+import tic_tac_toe.rest.tools.IntTestsProfilesResolver;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@ActiveProfiles(value = "it")
+@ActiveProfiles(value = "it", resolver = IntTestsProfilesResolver.class)
 public abstract class IntegrationTest {
 
     @LocalServerPort
-    protected int serverPort;
+    private int serverPort;
 
     @Autowired
     protected DataProvider data;
