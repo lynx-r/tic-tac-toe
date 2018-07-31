@@ -8,8 +8,10 @@ import tic_tac_toe.domain.game.start.GameStartResponse;
 import tic_tac_toe.domain.player.PlayerDto;
 import tic_tac_toe.entity.Game;
 import tic_tac_toe.entity.Player;
+import tic_tac_toe.exceptions.ErrorType;
 import tic_tac_toe.mapper.PlayerMapper;
 import tic_tac_toe.rest.api.GameStartApi;
+import tic_tac_toe.rest.data.spec.ErrorSpec;
 import tic_tac_toe.rest.data.spec.GameStartResponseSpec;
 import tic_tac_toe.rest.tools.GameHelper;
 import tic_tac_toe.rest.tools.PlayerHelper;
@@ -100,7 +102,7 @@ public class GameStartControllerIT extends IntegrationTest {
     }
 
     @Test
-    public void createNewGameWithAlreadyExistingPlayers() {
+    public void createNewGameWithAlreadyExistingPlayersShouldSuccess() {
         Player crossPlayer = PlayerHelper.createOne();
         Player naughtPlayer = PlayerHelper.createOne();
 
@@ -156,7 +158,9 @@ public class GameStartControllerIT extends IntegrationTest {
         GameStartApi
                 .post(secondPlayer)
                 .then()
-                .statusCode(HttpStatus.SC_OK);
+                .statusCode(HttpStatus.SC_CONFLICT)
+                .spec(ErrorSpec.applyErrorSpec(ErrorType.THE_SAME_SECOND_PLAYER,
+                        String.format("The second player is the same as first: %s", crossPlayer.getLogin())));
     }
 
     @Test
@@ -167,7 +171,8 @@ public class GameStartControllerIT extends IntegrationTest {
         GameStartApi
                 .post(secondPlayer)
                 .then()
-                .statusCode(HttpStatus.SC_OK);
+                .statusCode(HttpStatus.SC_NOT_FOUND)
+                .spec(ErrorSpec.applyErrorSpec(ErrorType.NO_SUCH_GAME, String.format("No such game with ID=%d", -33L)));
     }
 
     @Test
@@ -177,6 +182,7 @@ public class GameStartControllerIT extends IntegrationTest {
         GameStartApi
                 .post(crossPlayer)
                 .then()
-                .statusCode(HttpStatus.SC_OK);
+                .statusCode(HttpStatus.SC_BAD_REQUEST)
+                .spec(ErrorSpec.applyErrorSpec("validationException", "login: не может быть пусто"));
     }
 }

@@ -9,6 +9,8 @@ import tic_tac_toe.domain.game.start.GameStartResponse;
 import tic_tac_toe.entity.Game;
 import tic_tac_toe.entity.Player;
 import tic_tac_toe.enums.GameStatus;
+import tic_tac_toe.exceptions.NoSuchGameException;
+import tic_tac_toe.exceptions.SameSecondPlayerException;
 import tic_tac_toe.mapper.GameStartMapper;
 import tic_tac_toe.repository.GameRepository;
 import tic_tac_toe.repository.PlayerRepository;
@@ -42,8 +44,7 @@ public class GameStartServiceInternal {
 
     private Player findOrCreatePlayer(@NotEmpty String login, Player crossPlayer) {
         if (crossPlayer.getLogin().equals(login)) {
-            //TODO: special type
-            throw new RuntimeException("Нельзя играть с самим собой");
+            throw new SameSecondPlayerException(login);
         }
         return findOrCreatePlayer(login);
     }
@@ -55,8 +56,7 @@ public class GameStartServiceInternal {
 
     private Game findCreatedGame(GameStartRequest request) {
         Long gameId = request.getGameId();
-        //TODO: special type
-        return gameRepository.findById(gameId).orElseThrow(() -> new RuntimeException("No such Game"));
+        return gameRepository.findById(gameId).orElseThrow(() -> new NoSuchGameException(gameId));
     }
 
     private boolean isGameCreated(GameStartRequest request) {

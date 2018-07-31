@@ -13,4 +13,9 @@ public interface Fields {
         String ID = "playerId";
         String LOGIN = "login";
     }
+
+    interface Error {
+        String ERROR_NAME = "errorName";
+        String USER_MESSAGE = "userMessage";
+    }
 }
