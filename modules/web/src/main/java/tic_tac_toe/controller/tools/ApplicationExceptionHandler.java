@@ -13,7 +13,11 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
+import tic_tac_toe.exceptions.InvalidGameStatusException;
+import tic_tac_toe.exceptions.MoveOrderException;
+import tic_tac_toe.exceptions.NoBlankCellException;
 import tic_tac_toe.exceptions.NoSuchGameException;
+import tic_tac_toe.exceptions.PositionBusyException;
 import tic_tac_toe.exceptions.SameSecondPlayerException;
 import tic_tac_toe.exceptions.type.TypedError;
 import tic_tac_toe.exceptions.type.TypedErrorImpl;
@@ -22,6 +26,22 @@ import tic_tac_toe.exceptions.type.TypedException;
 @RestControllerAdvice
 @Slf4j
 public class ApplicationExceptionHandler {
+
+    @ExceptionHandler(PositionBusyException.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public TypedError handlePositionBusyException(PositionBusyException ex) { return ex; }
+
+    @ExceptionHandler(MoveOrderException.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public TypedError handleMoveOrderException(MoveOrderException ex) { return ex; }
+
+    @ExceptionHandler(NoBlankCellException.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public TypedError handleNoBlankCellException(NoBlankCellException ex) { return ex; }
+
+    @ExceptionHandler(InvalidGameStatusException.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public TypedError handleInvalidGameStatusException(InvalidGameStatusException ex) { return ex; }
 
     @ExceptionHandler(NoSuchGameException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)

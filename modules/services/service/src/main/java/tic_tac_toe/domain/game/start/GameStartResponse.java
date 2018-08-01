@@ -20,5 +20,5 @@ public class GameStartResponse {
     private PlayerDto naughtPlayer;
 
     @JsonProperty("isStarted")
-    private boolean isStarted;
+    private boolean started;
 }

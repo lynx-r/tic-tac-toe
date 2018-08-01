@@ -9,6 +9,11 @@ public interface Fields {
         String IS_STARTED = "isStarted";
     }
 
+    interface MoveMake {
+        String STATUS = "status";
+        String IS_GAME_FINISHED = "isGameFinished";
+    }
+
     interface Player {
         String ID = "playerId";
         String LOGIN = "login";

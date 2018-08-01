@@ -13,7 +13,7 @@ public class MoveResponse {
     private MoveStatus status;
 
     @JsonProperty("isGameFinished")
-    private boolean isGameFinished;
+    private boolean gameFinished;
 
     public enum MoveStatus {
         @JsonProperty("success")
