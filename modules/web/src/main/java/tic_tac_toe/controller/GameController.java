@@ -29,7 +29,7 @@ public class GameController {
         return gameService.makeMove(id, request);
     }
 
-    @GetMapping(Field.FULL)
+    @GetMapping(Field.PART)
     public FieldResponse getFieldState(@PathVariable Long id) {
         return gameService.getFieldState(id);
     }

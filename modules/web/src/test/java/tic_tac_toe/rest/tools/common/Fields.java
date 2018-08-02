@@ -14,6 +14,16 @@ public interface Fields {
         String IS_GAME_FINISHED = "isGameFinished";
     }
 
+    interface Field {
+        String FIELD = "field";
+
+        interface Cell {
+            String HORIZONTAL_POSITION = "horizontalPosition";
+            String VERTICAL_POSITION = "verticalPosition";
+            String SYMBOL = "symbol";
+        }
+    }
+
     interface Player {
         String ID = "playerId";
         String LOGIN = "login";

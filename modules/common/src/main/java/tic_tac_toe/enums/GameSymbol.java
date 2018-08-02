@@ -1,5 +1,10 @@
 package tic_tac_toe.enums;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public enum GameSymbol {
-    CROSS, NAUGHT, BLANK
+    @JsonProperty("cross")
+    CROSS,
+    @JsonProperty("naught")
+    NAUGHT
 }

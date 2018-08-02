@@ -1,8 +1,11 @@
 package tic_tac_toe.rest;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.apache.http.HttpStatus;
 import org.junit.Test;
+import tic_tac_toe.domain.field.CellDto;
+import tic_tac_toe.domain.field.FieldResponse;
 import tic_tac_toe.domain.move.MoveRequest;
 import tic_tac_toe.domain.move.MoveResponse;
 import tic_tac_toe.domain.move.MoveResponse.MoveStatus;
@@ -10,10 +13,12 @@ import tic_tac_toe.entity.Game;
 import tic_tac_toe.entity.Move;
 import tic_tac_toe.entity.Player;
 import tic_tac_toe.enums.GameStatus;
+import tic_tac_toe.enums.GameSymbol;
 import tic_tac_toe.exceptions.ErrorType;
 import tic_tac_toe.exceptions.PositionBusyException;
 import tic_tac_toe.rest.api.GameApi;
 import tic_tac_toe.rest.data.spec.ErrorSpec;
+import tic_tac_toe.rest.data.spec.FieldResponseSpec;
 import tic_tac_toe.rest.data.spec.MoveResponseSpec;
 import tic_tac_toe.rest.tools.GameHelper;
 import tic_tac_toe.rest.tools.MoveHelper;
@@ -395,5 +400,72 @@ public class GameControllerIT extends IntegrationTest {
                         String.format(PositionBusyException.MESSAGE,
                                 moveRequest.getHorizontalPosition(),
                                 moveRequest.getVerticalPosition())));
+    }
+
+    @Test
+    public void checkFieldState() {
+        Player crossPlayer = PlayerHelper.createOne();
+        Player naughtPlayer = PlayerHelper.createOne();
+
+        List<Move> moves = MoveHelper.createMoves(9);
+
+        Game game = GameHelper.createOne()
+                .setCrossPlayer(crossPlayer)
+                .setNaughtPlayer(naughtPlayer)
+                .setMoves(moves)
+                .setGameStatus(GameStatus.FINISHED);
+
+        for (Move move : moves) {
+            move.setGame(game);
+        }
+
+        data.game(game).build();
+
+        List<CellDto> cellDtos = new ArrayList<>();
+        cellDtos.add(new CellDto()
+                .setHorizontalPosition(1)
+                .setVerticalPosition(1)
+                .setSymbol(GameSymbol.CROSS));
+        cellDtos.add(new CellDto()
+                .setHorizontalPosition(1)
+                .setVerticalPosition(3)
+                .setSymbol(GameSymbol.CROSS));
+        cellDtos.add(new CellDto()
+                .setHorizontalPosition(2)
+                .setVerticalPosition(2)
+                .setSymbol(GameSymbol.CROSS));
+        cellDtos.add(new CellDto()
+                .setHorizontalPosition(3)
+                .setVerticalPosition(1)
+                .setSymbol(GameSymbol.CROSS));
+        cellDtos.add(new CellDto()
+                .setHorizontalPosition(3)
+                .setVerticalPosition(3)
+                .setSymbol(GameSymbol.CROSS));
+        cellDtos.add(new CellDto()
+                .setHorizontalPosition(1)
+                .setVerticalPosition(2)
+                .setSymbol(GameSymbol.NAUGHT));
+        cellDtos.add(new CellDto()
+                .setHorizontalPosition(2)
+                .setVerticalPosition(1)
+                .setSymbol(GameSymbol.NAUGHT));
+        cellDtos.add(new CellDto()
+                .setHorizontalPosition(2)
+                .setVerticalPosition(3)
+                .setSymbol(GameSymbol.NAUGHT));
+        cellDtos.add(new CellDto()
+                .setHorizontalPosition(3)
+                .setVerticalPosition(2)
+                .setSymbol(GameSymbol.NAUGHT));
+
+        FieldResponse expected = new FieldResponse()
+                .setCells(cellDtos);
+
+        GameApi.
+                getField(game.getId()).
+                then().
+                statusCode(HttpStatus.SC_OK).
+                spec(FieldResponseSpec.of(expected).withoutRoot());
     }
 }

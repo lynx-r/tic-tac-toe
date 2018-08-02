@@ -1,7 +1,10 @@
 package tic_tac_toe;
 
+import java.util.List;
+import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import tic_tac_toe.domain.field.CellDto;
 import tic_tac_toe.domain.field.FieldResponse;
 import tic_tac_toe.domain.game.GameStatusResponse;
 import tic_tac_toe.domain.move.MoveRequest;
@@ -43,7 +46,18 @@ public class GameServiceImpl implements GameService {
 
     @Override
     public FieldResponse getFieldState(Long id) {
-        return null;
+        Game game = gameServiceInternal.findGame(id);
+
+        List<CellDto> busyCells = game.getMoves()
+                                    .stream()
+                                    .map(move -> new CellDto()
+                                            .setHorizontalPosition(move.getHorizontalPosition())
+                                            .setVerticalPosition(move.getVerticalPosition())
+                                            .setSymbol(move.getGameSymbol()))
+                                    .collect(Collectors.toList());
+
+        return new FieldResponse()
+                .setCells(busyCells);
     }
 
     @Override
