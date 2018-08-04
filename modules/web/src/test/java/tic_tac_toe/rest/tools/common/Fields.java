@@ -24,6 +24,10 @@ public interface Fields {
         }
     }
 
+    interface Status {
+        String RESULT = "result";
+    }
+
     interface Player {
         String ID = "playerId";
         String LOGIN = "login";

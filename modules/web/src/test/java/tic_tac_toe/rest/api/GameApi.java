@@ -4,11 +4,19 @@ import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import tic_tac_toe.config.Urls.Game.GameFlow;
 import tic_tac_toe.config.Urls.Game.GameFlow.Field;
+import tic_tac_toe.config.Urls.Game.GameFlow.Status;
 import tic_tac_toe.domain.move.MoveRequest;
 
 import static io.restassured.RestAssured.given;
 
 public abstract class GameApi {
+
+    public static Response getStatus(Long id) {
+        return
+                given().
+                        when().
+                        get(Status.FULL, id);
+    }
 
     public static Response getField(Long id) {
         return

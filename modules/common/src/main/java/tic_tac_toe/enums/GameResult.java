@@ -1,5 +1,12 @@
 package tic_tac_toe.enums;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public enum GameResult {
-    CROSS_WON, NAUGHT_WON, DRAW
+    @JsonProperty("crossWin")
+    CROSS_WON,
+    @JsonProperty("naughtWin")
+    NAUGHT_WON,
+    @JsonProperty("draw")
+    DRAW
 }

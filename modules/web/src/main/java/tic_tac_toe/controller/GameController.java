@@ -34,7 +34,7 @@ public class GameController {
         return gameService.getFieldState(id);
     }
 
-    @GetMapping(Status.FULL)
+    @GetMapping(Status.PART)
     public GameStatusResponse getGameStatus(@PathVariable Long id) {
         return gameService.getGameStatus(id);
     }

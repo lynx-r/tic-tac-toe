@@ -62,6 +62,7 @@ public class GameServiceImpl implements GameService {
 
     @Override
     public GameStatusResponse getGameStatus(Long id) {
-        return null;
+        Game game = gameServiceInternal.findGame(id);
+        return new GameStatusResponse().setResult(game.getGameResult());
     }
 }

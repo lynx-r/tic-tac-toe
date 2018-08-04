@@ -6,12 +6,14 @@ import org.apache.http.HttpStatus;
 import org.junit.Test;
 import tic_tac_toe.domain.field.CellDto;
 import tic_tac_toe.domain.field.FieldResponse;
+import tic_tac_toe.domain.game.GameStatusResponse;
 import tic_tac_toe.domain.move.MoveRequest;
 import tic_tac_toe.domain.move.MoveResponse;
 import tic_tac_toe.domain.move.MoveResponse.MoveStatus;
 import tic_tac_toe.entity.Game;
 import tic_tac_toe.entity.Move;
 import tic_tac_toe.entity.Player;
+import tic_tac_toe.enums.GameResult;
 import tic_tac_toe.enums.GameStatus;
 import tic_tac_toe.enums.GameSymbol;
 import tic_tac_toe.exceptions.ErrorType;
@@ -19,6 +21,7 @@ import tic_tac_toe.exceptions.PositionBusyException;
 import tic_tac_toe.rest.api.GameApi;
 import tic_tac_toe.rest.data.spec.ErrorSpec;
 import tic_tac_toe.rest.data.spec.FieldResponseSpec;
+import tic_tac_toe.rest.data.spec.GameStatusResponseSpec;
 import tic_tac_toe.rest.data.spec.MoveResponseSpec;
 import tic_tac_toe.rest.tools.GameHelper;
 import tic_tac_toe.rest.tools.MoveHelper;
@@ -467,5 +470,42 @@ public class GameControllerIT extends IntegrationTest {
                 then().
                 statusCode(HttpStatus.SC_OK).
                 spec(FieldResponseSpec.of(expected).withoutRoot());
+    }
+
+    @Test
+    public void checkGameResultWonByCrossPlayer() {
+        Player crossPlayer = PlayerHelper.createOne();
+        Player naughtPlayer = PlayerHelper.createOne();
+
+        List<Move> moves = MoveHelper.createEightMovesForWin();
+
+        Game game = GameHelper.createOne()
+                .setCrossPlayer(crossPlayer)
+                .setNaughtPlayer(naughtPlayer)
+                .setMoves(moves)
+                .setGameStatus(GameStatus.IN_PROGRESS);
+
+        for (Move move : moves) {
+            move.setGame(game);
+        }
+
+        data.game(game).build();
+
+        MoveRequest moveRequest =
+                GameApi.createMoveRequest(game.getCrossPlayer().getId(), 3, 1);
+
+        GameApi.
+                post(game.getId(), moveRequest).
+                then().
+                statusCode(HttpStatus.SC_OK);
+
+        GameStatusResponse expected = new GameStatusResponse()
+                .setResult(GameResult.CROSS_WON);
+
+        GameApi.
+                getStatus(game.getId()).
+                then().
+                statusCode(HttpStatus.SC_OK).
+                spec(GameStatusResponseSpec.of(expected).withoutRoot());
     }
 }
