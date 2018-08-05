@@ -15,8 +15,8 @@ env:
     - MYSQL_PASSWORD: root
 
 before_install:
-  - docker pull mysql/mysql-server
-  - docker run -d -p localhost:3306/tic-tac-toe
+  - docker pull mysql/mysql-server:5.7
+  - docker run -d -p localhost:3306/tic-tac-toe mysql/mysql-server:5.7
 
 script:
   - mvn clean verify
