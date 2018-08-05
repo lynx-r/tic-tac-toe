@@ -1,6 +1,22 @@
+sudo: required
+
 language: java
 
 jdk:
   - oraclejdk8
 
-script: mvn clean verify
+services:
+  - docker
+
+env:
+  global:
+    - MYSQL_DATABASE: tic-tac-toe
+    - MYSQL_USER: root
+    - MYSQL_PASSWORD: root
+
+before_install:
+  - docker pull mysql/mysql-server
+  - docker run -d -p localhost:3306/tic-tac-toe
+
+script:
+  - mvn clean verify
