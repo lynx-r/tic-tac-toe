@@ -16,7 +16,7 @@ env:
 
 before_install:
   - docker pull mysql/mysql-server:5.7
-  - docker run -d -p localhost:3306/tic-tac-toe mysql/mysql-server:5.7
+  - docker run -d mysql/mysql-server:5.7 -p 3306:3306
 
 script:
   - mvn clean verify
