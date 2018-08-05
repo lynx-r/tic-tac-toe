@@ -16,4 +16,5 @@ before_script:
   - mysql -e 'create database `tic-tac-toe`;'
 
 script:
+  - mysql -e 'select host, user, password from mysql.user;'
   - mvn clean verify
