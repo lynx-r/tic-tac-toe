@@ -18,5 +18,9 @@ before_install:
   - docker pull mysql/mysql-server:5.7
   - docker run -d mysql/mysql-server:5.7 -p 3306:3306
 
+before_script:
+  - mysql -e 'create database tic-tac-toe;'
+
 script:
+  - mysql -e 'show databases;'
   - mvn clean verify
