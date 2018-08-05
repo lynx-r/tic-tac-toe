@@ -183,6 +183,6 @@ public class GameStartControllerIT extends IntegrationTest {
                 .post(crossPlayer)
                 .then()
                 .statusCode(HttpStatus.SC_BAD_REQUEST)
-                .spec(ErrorSpec.applyErrorSpec("validationException", "login: не может быть пусто"));
+                .spec(ErrorSpec.applyErrorSpec("validationException", "login: should not be empty"));
     }
 }

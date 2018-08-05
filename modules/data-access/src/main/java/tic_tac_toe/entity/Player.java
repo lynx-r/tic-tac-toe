@@ -34,7 +34,7 @@ public class Player {
     private Long id;
 
     @Column(name = "login")
-    @NotBlank
+    @NotBlank(message = "should not be empty")
     private String login;
 
     @OneToMany(mappedBy = "crossPlayer", fetch = FetchType.LAZY, cascade = javax.persistence.CascadeType.ALL)
