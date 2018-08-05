@@ -14,7 +14,7 @@ before_install:
 
 before_script:
   - mysql -e 'create database `tic-tac-toe`;'
+  - mysql -e 'SET PASSWORD FOR 'root'@'localhost' = PASSWORD("root");'
 
 script:
-  - mysql -e 'select host, user, password from mysql.user;'
   - mvn clean verify
