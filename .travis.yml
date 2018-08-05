@@ -8,15 +8,9 @@ jdk:
 services:
   - docker
 
-env:
-  global:
-    - MYSQL_DATABASE: tic-tac-toe
-    - MYSQL_USER: root
-    - MYSQL_PASSWORD: root
-
 before_install:
   - docker pull mysql/mysql-server:5.7
-  - docker run -d mysql/mysql-server:5.7 -p 3306:3306
+  - docker run -e MYSQL_ROOT_PASSWORD=root -d mysql/mysql-server:5.7 -p 3306:3306
 
 before_script:
   - mysql -e 'create database `tic-tac-toe`;'
