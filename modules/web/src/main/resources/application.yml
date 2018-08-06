@@ -1,6 +1,6 @@
 spring:
   profiles:
-    active: prod
+    active: dev
 
   liquibase:
     contexts: prod
@@ -47,7 +47,7 @@ spring:
         maximum-pool-size: 6
         minimum-idle: 3
       driver-class-name: org.postgresql.Driver
-      url: jdbc:postgres://ec2-54-225-76-201.compute-1.amazonaws.com:5432/d5oc5i1o3gkhoe
+      url: jdbc:postgres://hpxnwryukftyvj:646296ab5ab5d71497e827e5bbf63a23423188109b682306175c01a4a40d943c@ec2-54-225-76-201.compute-1.amazonaws.com:5432/d5oc5i1o3gkhoe
       username: hpxnwryukftyvj
       password: 646296ab5ab5d71497e827e5bbf63a23423188109b682306175c01a4a40d943c
 
