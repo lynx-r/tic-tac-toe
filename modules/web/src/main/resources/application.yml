@@ -37,18 +37,5 @@ spring:
 ---
 spring:
   profiles: prod
-
-  liquibase:
-      contexts: prod
-      drop-first: false
-
   datasource:
-      hikari:
-        maximum-pool-size: 6
-        minimum-idle: 3
-      driver-class-name: org.postgresql.Driver
-      url: jdbc:postgres://hpxnwryukftyvj:646296ab5ab5d71497e827e5bbf63a23423188109b682306175c01a4a40d943c@ec2-54-225-76-201.compute-1.amazonaws.com:5432/d5oc5i1o3gkhoe
-      username: hpxnwryukftyvj
-      password: 646296ab5ab5d71497e827e5bbf63a23423188109b682306175c01a4a40d943c
-
-  database-platform: org.hibernate.dialect.PostgreSQL9Dialect
+    driver-class-name: com.mysql.jdbc.Driver
