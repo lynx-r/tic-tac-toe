@@ -26,6 +26,10 @@ public class GameStartServiceInternal {
         return isGameCreated(request) ? updateNewGame(request) : createNewGame(request);
     }
 
+    public GameStartResponse startGame(Long gameId) {
+        return mapper.toGameStartResponse(findCreatedGame(gameId));
+    }
+
     private GameStartResponse createNewGame(GameStartRequest request) {
         Player crossPlayer = findOrCreatePlayer(request.getLogin());
         Game game = new Game()
@@ -35,7 +39,7 @@ public class GameStartServiceInternal {
     }
 
     private GameStartResponse updateNewGame(GameStartRequest request) {
-        Game game = findCreatedGame(request);
+        Game game = findCreatedGame(request.getGameId());
         Player naughtPlayer = findOrCreatePlayer(request.getLogin(), game.getCrossPlayer());
         game.setNaughtPlayer(naughtPlayer)
                 .setGameStatus(GameStatus.JUST_START);
@@ -54,8 +58,7 @@ public class GameStartServiceInternal {
         return playerIntoBox.orElseGet(() -> playerRepository.save(new Player().setLogin(login)));
     }
 
-    private Game findCreatedGame(GameStartRequest request) {
-        Long gameId = request.getGameId();
+    private Game findCreatedGame(Long gameId) {
         return gameRepository.findById(gameId).orElseThrow(() -> new NoSuchGameException(gameId));
     }
 

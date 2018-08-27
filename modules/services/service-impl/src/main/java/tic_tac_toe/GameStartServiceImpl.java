@@ -15,4 +15,9 @@ public class GameStartServiceImpl implements GameStartService {
     public GameStartResponse startGame(GameStartRequest request) {
        return gameStartServiceInternal.startGame(request);
     }
+
+    @Override
+    public GameStartResponse startGame(Long gameId) {
+        return gameStartServiceInternal.startGame(gameId);
+    }
 }

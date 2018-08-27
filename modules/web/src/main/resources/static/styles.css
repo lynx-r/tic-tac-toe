@@ -1,0 +1,267 @@
+body {
+    margin: 0;
+}
+.ul-without-order {
+    -webkit-padding-start: 0;
+    list-style-type: none;
+}
+.ul-without-order li {
+    margin: 10px 0;
+}
+label {
+    width: 100px;
+    display: inline-block;
+}
+.startGame, .cssload-container {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+input[type="text"] {
+   border: 1px solid #cccccc;
+   border-radius: 3px;
+   -webkit-border-radius: 3px;
+   -moz-border-radius: 3px;
+   -khtml-border-radius: 3px;
+   background: #ffffff !important;
+   outline: none;
+   height: 28px;
+   width: 200px;
+   color: #32383B;
+   padding: 3px 5px;
+   font-size: 12px;
+}
+input[type="text"]:focus {
+  color: #000000;
+  border: 1px solid #3CA0D1
+}
+hr {
+    border: solid 1px #3CA0D1;
+}
+input[type="submit"] {
+    color: #fff;
+    padding: 6px 10px;
+    background: #3CA0D1;
+    border: 1px solid #fff;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 5px;
+    cursor:pointer;
+    width: 150px;
+ }
+ input[type="submit"]:hover {
+    background-color:#0870A2;
+ }
+ #black-background{
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.8);
+    z-index: 100;
+    position: absolute;
+    display: none;
+    margin:0;
+ }
+ .cssload-container {
+    z-index: 100;
+ }
+
+.cssload-container * {
+	box-sizing: border-box;
+		-o-box-sizing: border-box;
+		-ms-box-sizing: border-box;
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+}
+.cssload-container {
+	margin: 28px auto 0 auto;
+	max-width: 769px;
+}
+
+.cssload-container ul li{
+	list-style: none;
+}
+
+.cssload-flex-container {
+	display: flex;
+		display: -o-flex;
+		display: -ms-flex;
+		display: -webkit-flex;
+		display: -moz-flex;
+	flex-direction: row;
+		-o-flex-direction: row;
+		-ms-flex-direction: row;
+		-webkit-flex-direction: row;
+		-moz-flex-direction: row;
+	flex-wrap: wrap;
+		-o-flex-wrap: wrap;
+		-ms-flex-wrap: wrap;
+		-webkit-flex-wrap: wrap;
+		-moz-flex-wrap: wrap;
+	justify-content: space-around;
+}
+.cssload-flex-container li {
+	padding: 14px;
+	height: 138px;
+	width: 138px;
+	margin: 41px 28px;
+	position: relative;
+	text-align: center;
+}
+
+.cssload-loading {
+	display: inline-block;
+	position: relative;
+	width: 117px;
+	height: 117px;
+	border-radius: 100%;
+		-o-border-radius: 100%;
+		-ms-border-radius: 100%;
+		-webkit-border-radius: 100%;
+		-moz-border-radius: 100%;
+	border: 7px solid transparent;
+	border-bottom: 7px solid rgba(90,181,214,0.98);
+	border-left: 7px solid rgb(90,181,214);
+	animation: cssload-spinR 2.3s linear infinite;
+		-o-animation: cssload-spinR 2.3s linear infinite;
+		-ms-animation: cssload-spinR 2.3s linear infinite;
+		-webkit-animation: cssload-spinR 2.3s linear infinite;
+		-moz-animation: cssload-spinR 2.3s linear infinite;
+}
+.cssload-loading:before, .cssload-loading:after {
+	content: '';
+	display: block;
+	border-radius: 100%;
+		-o-border-radius: 100%;
+		-ms-border-radius: 100%;
+		-webkit-border-radius: 100%;
+		-moz-border-radius: 100%;
+	position: absolute;
+}
+.cssload-loading:before {
+	height: 69px;
+	width: 69px;
+	border: 4px solid transparent;
+	border-top: 4px solid rgb(41,171,194);
+	border-right: 4px solid rgb(41,171,194);
+	animation: cssload-spinL 0.86s linear infinite;
+		-o-animation: cssload-spinL 0.86s linear infinite;
+		-ms-animation: cssload-spinL 0.86s linear infinite;
+		-webkit-animation: cssload-spinL 0.86s linear infinite;
+		-moz-animation: cssload-spinL 0.86s linear infinite;
+	transform-origin: center center;
+		-o-transform-origin: center center;
+		-ms-transform-origin: center center;
+		-webkit-transform-origin: center center;
+		-moz-transform-origin: center center;
+	top: 11%;
+	left: 11%;
+}
+.cssload-loading:after {
+	height: 14px;
+	width: 14px;
+	background: transparent;
+	border: 3px solid rgb(34,136,204);
+	top: 35.5%;
+	left: 35.5%;
+}
+
+.invisibleResult {
+    display: none;
+}
+
+@keyframes cssload-spinR {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+@-o-keyframes cssload-spinR {
+	from {
+		-o-transform: rotate(0deg);
+	}
+	to {
+		-o-transform: rotate(360deg);
+	}
+}
+
+@-ms-keyframes cssload-spinR {
+	from {
+		-ms-transform: rotate(0deg);
+	}
+	to {
+		-ms-transform: rotate(360deg);
+	}
+}
+
+@-webkit-keyframes cssload-spinR {
+	from {
+		-webkit-transform: rotate(0deg);
+	}
+	to {
+		-webkit-transform: rotate(360deg);
+	}
+}
+
+@-moz-keyframes cssload-spinR {
+	from {
+		-moz-transform: rotate(0deg);
+	}
+	to {
+		-moz-transform: rotate(360deg);
+	}
+}
+
+@keyframes cssload-spinL {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(-360deg);
+	}
+}
+
+@-o-keyframes cssload-spinL {
+	from {
+		-o-transform: rotate(0deg);
+	}
+	to {
+		-o-transform: rotate(-360deg);
+	}
+}
+
+@-ms-keyframes cssload-spinL {
+	from {
+		-ms-transform: rotate(0deg);
+	}
+	to {
+		-ms-transform: rotate(-360deg);
+	}
+}
+
+@-webkit-keyframes cssload-spinL {
+	from {
+		-webkit-transform: rotate(0deg);
+	}
+	to {
+		-webkit-transform: rotate(-360deg);
+	}
+}
+
+@-moz-keyframes cssload-spinL {
+	from {
+		-moz-transform: rotate(0deg);
+	}
+	to {
+		-moz-transform: rotate(-360deg);
+	}
+}
+
+.grid td {
+    background: #FFFFFF;
+    width: 100px;
+    height: 100px;
+}

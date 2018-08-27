@@ -26,6 +26,7 @@ import tic_tac_toe.rest.tools.common.Fields;
 import tic_tac_toe.rest.tools.common.Fields.GameStart;
 import tic_tac_toe.rest.tools.common.IntegrationTest;
 
+@SuppressWarnings(value = "MethodLength")
 public class WorkflowIT extends IntegrationTest {
 
     /**
